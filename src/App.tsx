@@ -16,6 +16,9 @@ const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(1),
   },
+  paper: {
+    textAlign: 'center',
+  }
 }));
 
 function Copyright() {
@@ -59,7 +62,7 @@ export default function App() {
           Meeting Cost Calculator
         </Typography>              
       </Box>
-      <Box>
+      <Box className={classes.paper}>
         <form className={classes.root} noValidate autoComplete="off">          
           <TextField 
             defaultValue={defaultParticipantCount}
