@@ -21,15 +21,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Copyright() {
+function Infos() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://github.com/ashatch/">
-        ashatch
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      <Link color="inherit" href="https://github.com/ashatch/meeting-cost-calculator">
+        {'Project Home'}
+      </Link>
     </Typography>
   );
 }
@@ -37,23 +34,26 @@ function Copyright() {
 export default function App() {
   const classes = useStyles();
 
+  const defaultCurrency = "$";
   const defaultParticipantCount = "2";
   const defaultMeetingMinutes = "60";
-  const defaultAverageSalary = "12000";
+  const defaultAverageSalary = "20000";
 
+  const [currency, setCurrency] = useState<string>(defaultCurrency);
   const [participants, setParticipants] = useState<string>(defaultParticipantCount);
   const [meetingMinutes, setMeetingMinutes] = useState<string>(defaultMeetingMinutes);
   const [averageSalary, setAverageSalary] = useState<string>(defaultAverageSalary);
   const [cost, setCost] = useState<string>("1");
 
   useEffect(() => {
+    const currencySymbol = currency.valueOf();
     const numParticipants = Number(participants.valueOf());
     const numMeetingMinutes = Number(meetingMinutes.valueOf());
     const numAverageSalary = Number(averageSalary.valueOf());
     const workingMinutesPerYear = 260 * 7.5 * 60;
     const cost = (numParticipants * numMeetingMinutes * numAverageSalary) / workingMinutesPerYear;    
-    setCost(`${cost.toFixed(2)}`);
-  }, [participants, meetingMinutes, averageSalary]);
+    setCost(`${currencySymbol}${cost.toFixed(2)}`);
+  }, [currency, participants, meetingMinutes, averageSalary]);
 
   return (
     <Container maxWidth="md">
@@ -64,7 +64,14 @@ export default function App() {
       </Box>
       <Box className={classes.paper}>
         <form className={classes.root} noValidate autoComplete="off">          
-          <TextField 
+          <TextField
+            defaultValue={defaultCurrency}
+            id="input-currency"
+            label="Currency"
+            onChange={event => {setCurrency(event.target.value);}}
+            variant="outlined" />
+
+          <TextField
             defaultValue={defaultParticipantCount}
             id="input-participants"
             label="Number of participants"
@@ -81,19 +88,23 @@ export default function App() {
           <TextField
             defaultValue={defaultAverageSalary}
             id="input-average-salary"
-            label="Average salary"
+            label="Average yearly salary"
             onChange={event => {setAverageSalary(event.target.value);}}
             variant="outlined"/>          
         </form>
       </Box>
+
       <Typography variant="body1" color="textSecondary" align="center">
         the meeting cost is
       </Typography>
       <Typography variant="h2" color="textSecondary" align="center">
         {cost}
       </Typography>
-      <hr />
-      <Copyright />
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'7½ hour days, 260 working days per year'}
+      </Typography>
+      <Box m={10} />
+      <Infos />
     </Container>
   );
 }
