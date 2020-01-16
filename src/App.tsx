@@ -43,7 +43,7 @@ export default function App() {
   const [participants, setParticipants] = useState<string>(defaultParticipantCount);
   const [meetingMinutes, setMeetingMinutes] = useState<string>(defaultMeetingMinutes);
   const [averageSalary, setAverageSalary] = useState<string>(defaultAverageSalary);
-  const [cost, setCost] = useState<string>("1");
+  const [cost, setCost] = useState<string>("");
 
   useEffect(() => {
     const currencySymbol = currency.valueOf();
@@ -51,7 +51,7 @@ export default function App() {
     const numMeetingMinutes = Number(meetingMinutes.valueOf());
     const numAverageSalary = Number(averageSalary.valueOf());
     const workingMinutesPerYear = 260 * 7.5 * 60;
-    const cost = (numParticipants * numMeetingMinutes * numAverageSalary) / workingMinutesPerYear;    
+    const cost = (numParticipants * numMeetingMinutes * numAverageSalary) / workingMinutesPerYear;
     setCost(`${currencySymbol}${cost.toFixed(2)}`);
   }, [currency, participants, meetingMinutes, averageSalary]);
 
@@ -75,14 +75,14 @@ export default function App() {
             defaultValue={defaultParticipantCount}
             id="input-participants"
             label="Number of participants"
-            onChange={event => {setMeetingMinutes(event.target.value);}}
+            onChange={event => {setParticipants(event.target.value);}}
             variant="outlined" />
 
           <TextField
             defaultValue={defaultMeetingMinutes}
             id="input-meeting-minutes"
             label="Meeting length (minutes)"
-            onChange={event => {setParticipants(event.target.value);}}
+            onChange={event => {setMeetingMinutes(event.target.value);}}
             variant="outlined"/>
 
           <TextField
