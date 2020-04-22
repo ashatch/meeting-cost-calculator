@@ -4,7 +4,7 @@
 
 It... calculates the costs of meetings.
 
-Use it [here](https://gifted-haibt-c6b628.netlify.com/).
+Use it [here](https://gifted-haibt-c6b628.netlify.app/).
 
 ## How
 
