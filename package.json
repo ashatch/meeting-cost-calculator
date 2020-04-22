@@ -1,16 +1,18 @@
 {
   "name": "meeting-cost-calculator",
   "version": "1.0.0",
-  "author": {"name": "ashatch"},
+  "author": {
+    "name": "ashatch"
+  },
   "license": "MIT",
   "dependencies": {
-    "@material-ui/core": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-scripts": "latest",
-    "typescript": "latest"
+    "@material-ui/core": "^4.9.11",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
